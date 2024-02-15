@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.PlayerModel>
+﻿@* @model IEnumerable<WebApplication1.Models.PlayerModel>
 
 @{
     ViewData["Title"] = "List";
@@ -42,3 +42,88 @@
 }
     </tbody>
 </table>
+ *@
+
+@model IEnumerable<WebApplication1.Models.PlayerModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<p>
+    <a asp-action="create">Create New</a>
+</p>
+<table class="table" id="data-table">
+    <thead>
+        <tr>
+            <th>
+                <a href="#" data-sort-by="FirstName">@Html.DisplayNameFor(model => model.FirstName)</a>
+            </th>
+            <th>
+                <a href="#" data-sort-by="LastName">@Html.DisplayNameFor(model => model.LastName)</a>
+            </th>
+            <th>
+                <a href="#" data-sort-by="Position">@Html.DisplayNameFor(model => model.Position)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td data-column="FirstName">
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td data-column="LastName">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td data-column="Position">
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id, FirstName = item.FirstName, LastName = item.LastName, Position = item.Position })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var table = document.getElementById("data-table");
+            var headers = table.querySelectorAll("thead th a[data-sort-by]");
+
+            headers.forEach(function (header) {
+                header.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    var sortBy = event.target.dataset.sortBy;
+                    sortTable(table, sortBy);
+                });
+            });
+
+            function sortTable(table, column) {
+                var rows = Array.from(table.querySelectorAll("tbody tr"));
+
+                rows.sort(function (a, b) {
+                    var aValue = a.querySelector("td[data-column='" + column + "']").textContent.trim();
+                    var bValue = b.querySelector("td[data-column='" + column + "']").textContent.trim();
+
+                    if (!isNaN(aValue) && !isNaN(bValue)) {
+                        return parseFloat(aValue) - parseFloat(bValue);
+                    } else {
+                        return aValue.localeCompare(bValue);
+                    }
+                });
+
+                var tbody = table.querySelector("tbody");
+                tbody.innerHTML = "";
+
+                rows.forEach(function (row) {
+                    tbody.appendChild(row);
+                });
+            }
+        });
+    </script>
+}
