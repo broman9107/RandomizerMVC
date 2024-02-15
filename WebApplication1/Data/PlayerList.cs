@@ -50,11 +50,23 @@ namespace WebApplication1.Data
             list.Add(new PlayerModel { id = 40, FirstName = "David", LastName = "Collins", Position = "C" });
         }
 
-        //public List<PlayerList> OrderListBy(PlayerList list1)
-        //{
-        //    List<PlayerList> list2 = (List<PlayerList>)list.OrderBy(p => p.LastName).ToList();
-        //    return list2;
-        //}
+        public IEnumerable<PlayerModel> OrderListByLastName()
+        {
+            IEnumerable<PlayerModel> list2 = list.OrderBy(p => p.LastName);
+            return list2;
+        }
+
+        public IEnumerable<PlayerModel> OrderListByFirstName()
+        {
+            IEnumerable<PlayerModel> list2 = list.OrderBy(p => p.FirstName);
+            return list2;
+        }
+
+        public IEnumerable<PlayerModel> OrderListByPosition()
+        {
+            IEnumerable<PlayerModel> list2 = list.OrderBy(p => p.Position);
+            return list2;
+        }
         public void AddToList(PlayerModel player)
         {
             if(list.Count == 0)
