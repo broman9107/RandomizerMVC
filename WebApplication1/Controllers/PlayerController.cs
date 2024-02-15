@@ -23,19 +23,19 @@ namespace WebApplication1.Controllers
         [Route("lastname")]
         public IActionResult LastName()
         {
-            return View("List2", _pml.OrderListByLastName());
+            return View("List", _pml.OrderListByLastName());
         }
 
         [Route("firstname")]
         public IActionResult FirstName()
         {
-            return View("List2", _pml.OrderListByFirstName());
+            return View("List", _pml.OrderListByFirstName());
         }
 
         [Route("position")]
         public IActionResult Position()
         {
-            return View("List2", _pml.OrderListByPosition());
+            return View("List", _pml.OrderListByPosition());
         }
 
         [Route("create")]
