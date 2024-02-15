@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication1.Models.PlayerModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+
+<p>
+    <a asp-action="create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.id, FirstName = item.FirstName, LastName = item.LastName, Position = item.Position })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
