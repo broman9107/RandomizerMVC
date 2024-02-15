@@ -21,10 +21,10 @@ namespace WebApplication1.Controllers
         }
 
         [Route("list2")]
-        public IActionResult List2(PlayerList pl)
-        {
-            return View("List2", pl.OrderListBy(pl));
-        }
+        //public IActionResult List2()
+        //{
+        //    return View("List2", _pml.OrderListBy(_pml.list));
+        //}
 
         [Route("create")]
         public IActionResult Create()
