@@ -55,5 +55,14 @@ namespace WebApplication1.Controllers
             _pml.RemoveFromList(pm);
             return RedirectToAction("list");
         }
+
+        public IActionResult Randomize(int i)
+        {
+            if (i < 1 || i > _pml.list.Count)
+            {
+                i = 1;
+            }
+            return View("List2", _pml.Randomize(i));
+        }
     }
 }

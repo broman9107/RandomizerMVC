@@ -1,4 +1,5 @@
-﻿using WebApplication1.Models;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using WebApplication1.Models;
 
 namespace WebApplication1.Data
 {
@@ -85,6 +86,17 @@ namespace WebApplication1.Data
         {
             PlayerModel playertoremove = list.Find(x => x.id == player.id);
             list.Remove(playertoremove);
+        }
+
+        public List<PlayerModel> Randomize(int i)
+        {
+            Random rnd = new Random();
+            List<PlayerModel> players = new List<PlayerModel>();
+            for (int j = 0; j < i; j++)
+            {
+                players.Add(list[rnd.Next(list.Count)]);
+            }
+            return players;
         }
     }
 }

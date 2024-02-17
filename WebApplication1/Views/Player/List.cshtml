@@ -4,9 +4,19 @@
     ViewData["Title"] = "List";
 }
 
-<p>
+<span>
     <a asp-action="create">Create New</a>
-</p>
+</span>
+<span><h4>List Count: @Model.Count()</h4></span>
+<div>
+    @using (Html.BeginForm("Randomize", "Player", FormMethod.Post))
+    {
+        <span>
+            <input id="inputnumber" type="number" name="i" />
+            <button type="submit">Randomize</button>
+        </span>
+    }
+</div>
 <table class="table" id="data-table">
     <thead>
         <tr>
