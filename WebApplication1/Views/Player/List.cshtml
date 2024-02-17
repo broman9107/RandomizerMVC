@@ -7,7 +7,7 @@
 <span>
     <a asp-action="create">Create New</a>
 </span>
-<span><h4>List Count: @Model.Count()</h4></span>
+<h4>List Count: @Model.Count()</h4>
 <div>
     @using (Html.BeginForm("Randomize", "Player", FormMethod.Post))
     {
